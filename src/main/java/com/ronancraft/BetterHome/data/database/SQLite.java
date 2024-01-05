@@ -1,4 +1,4 @@
-package com.ronancraft.BetterHome.database;
+package com.ronancraft.BetterHome.data.database;
 
 import lombok.NonNull;
 import me.SuperRonanCraft.BetterRTP.BetterRTP;

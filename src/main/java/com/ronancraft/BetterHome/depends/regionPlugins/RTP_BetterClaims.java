@@ -3,7 +3,7 @@ package com.ronancraft.BetterHome.depends.regionPlugins;
 import me.RonanCraft.Pueblos.Pueblos;
 import org.bukkit.Location;
 
-public class RTP_Pueblos implements RegionPluginCheck {
+public class RTP_BetterClaims implements RegionPluginCheck {
 
     // NOT TESTED (3.1.0)
     // Pueblos (v2.0.1)

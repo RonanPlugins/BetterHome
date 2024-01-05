@@ -1,7 +1,7 @@
 package com.ronancraft.BetterHome;
 
 import com.ronancraft.BetterHome.commands.Commands;
-import com.ronancraft.BetterHome.database.DatabaseHandler;
+import com.ronancraft.BetterHome.data.database.DatabaseHandler;
 import com.ronancraft.BetterHome.depends.DepEconomy;
 import com.ronancraft.BetterHome.events.EventListener;
 import com.ronancraft.BetterHome.file.Files;

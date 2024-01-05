@@ -1,4 +1,4 @@
-package com.ronancraft.BetterHome.database;
+package com.ronancraft.BetterHome.data.database;
 
 import com.ronancraft.BetterHome.BetterHome;
 import com.ronancraft.BetterHome.versions.AsyncHandler;

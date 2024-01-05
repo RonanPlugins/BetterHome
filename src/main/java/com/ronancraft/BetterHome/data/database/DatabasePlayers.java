@@ -1,7 +1,8 @@
-package com.ronancraft.BetterHome.database;
+package com.ronancraft.BetterHome.data.database;
 
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
-import me.SuperRonanCraft.BetterRTP.references.player.playerdata.PlayerData;
+import com.ronancraft.BetterHome.BetterHome;
+import com.ronancraft.BetterHome.data.PlayerData;
+import org.bukkit.Location;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,9 +28,9 @@ public class DatabasePlayers extends SQLite {
     public enum COLUMNS {
         UUID("uuid", "varchar(32) PRIMARY KEY"),
         //COOLDOWN DATA
-        COUNT("count", "long"),
-        LAST_COOLDOWN_DATE("last_rtp_date", "long"),
-        //USES("uses", "integer"),
+        PRIMARY_HOME("home", "TEXT"),
+        LAST_HOME_DATE("last_home_date", "DATETIME"),
+        OTHER_HOMES("other_homes", "TEXT"),
         ;
 
         public final String name;
@@ -52,31 +53,30 @@ public class DatabasePlayers extends SQLite {
 
             rs = ps.executeQuery();
             if (rs.next()) {
-                long count = rs.getLong(COLUMNS.COUNT.name);
-                long time = rs.getLong(COLUMNS.LAST_COOLDOWN_DATE.name);
-                data.setRtpCount(Math.toIntExact(count));
-                data.setGlobalCooldown(time);
+                Location home = DatabaseHelper.getLocationFromJson(rs.getString(COLUMNS.PRIMARY_HOME.name));
+                data.setLastHomeDate(rs.getDate(COLUMNS.LAST_HOME_DATE.name));
+                data.setDefaultHome(home);
             }
         } catch (SQLException ex) {
-            BetterRTP.getInstance().getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
+            BetterHome.getInstance().getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
         } finally {
             close(ps, rs, conn);
         }
     }
 
-    //Set a player Cooldown
+    //Save players Home(s)
     public void setData(PlayerData data) {
         String pre = "INSERT OR REPLACE INTO ";
         String sql = pre + tables.get(0) + " ("
                 + COLUMNS.UUID.name + ", "
-                + COLUMNS.COUNT.name + ", "
-                + COLUMNS.LAST_COOLDOWN_DATE.name + " "
+                + COLUMNS.PRIMARY_HOME.name + ", "
+                + COLUMNS.LAST_HOME_DATE.name + " "
                 //+ COLUMNS.USES.name + " "
                 + ") VALUES(?, ?, ?)";
         List<Object> params = new ArrayList<Object>() {{
                 add(data.player.getUniqueId().toString());
-                add(data.getRtpCount());
-                add(data.getGlobalCooldown());
+                add(data.getDefaultHome());
+                add(data.getLastHomeDate());
                 //add(data.getUses());
         }};
         sqlUpdate(sql, params);

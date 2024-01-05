@@ -11,7 +11,7 @@ public enum REGIONPLUGINS {
     HUSKTOWNS("HuskTowns", new RTP_HuskTowns()),
     KINGDOMSX("KingdomsX", "Kingdoms", new RTP_KingdomsX()),
     LANDS("Lands", new RTP_Lands()),
-    PUEBLOS("Pueblos", new RTP_Pueblos()),
+    PUEBLOS("Pueblos", new RTP_BetterClaims()),
     REDPROTECT("RedProtect", new RTP_RedProtect()),
     RESIDENCE("Residence", new RTP_Residence()),
     SABERFACTIONS("SaberFactions", "Factions", new RTP_SaberFactions()),
@@ -19,7 +19,7 @@ public enum REGIONPLUGINS {
     ULTIMATECLAIMS("UltimateClaims", new RTP_UltimateClaims()),
     WORLDGUARD("WorldGuard", new RTP_WorldGuard()),
     MINEPLOTS("MinePlots", new RTP_MinePlots()),
-    //FACTIONSBRIDGE("FactionsBridge", new RTP_FactionsBridge()),
+    FACTIONSBRIDGE("FactionsBridge", new RTP_FactionsBridge()),
     CRASH_CLAIM("CrashClaim", new RTP_CrashClaim());
 
     @Getter private final SoftDepends.RegionPlugin plugin = new SoftDepends.RegionPlugin();

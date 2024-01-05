@@ -1,4 +1,4 @@
-package com.ronancraft.BetterHome.database;
+package com.ronancraft.BetterHome.data.database;
 
 public class Errors {
     public static String sqlConnectionExecute(){
