@@ -3,7 +3,7 @@ package com.ronancraft.BetterHome.messages;
 import com.google.common.collect.ImmutableCollection;
 import com.ronancraft.BetterHome.file.FileData;
 import com.ronancraft.BetterHome.messages.placeholder.PlaceholderAnalyzer;
-import com.ronancraft.BetterHome.versions.AsyncHandler;
+import com.ronancraft.BetterHome.async.AsyncHandler;
 import lombok.NonNull;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

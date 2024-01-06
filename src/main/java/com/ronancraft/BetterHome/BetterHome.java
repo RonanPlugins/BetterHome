@@ -1,11 +1,13 @@
 package com.ronancraft.BetterHome;
 
-import com.ronancraft.BetterHome.commands.Commands;
-import com.ronancraft.BetterHome.data.database.DatabaseHandler;
+import com.ronancraft.BetterHome.player.PlayerDataManager;
+import com.ronancraft.BetterHome.player.commands.Commands;
+import com.ronancraft.BetterHome.database.DatabaseHandler;
 import com.ronancraft.BetterHome.depends.DepEconomy;
-import com.ronancraft.BetterHome.events.EventListener;
+import com.ronancraft.BetterHome.player.events.EventListener;
 import com.ronancraft.BetterHome.file.Files;
-import com.ronancraft.BetterHome.versions.FoliaHandler;
+import com.ronancraft.BetterHome.player.permission.Permissions;
+import com.ronancraft.BetterHome.async.FoliaHandler;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,6 +24,7 @@ public final class BetterHome extends JavaPlugin {
     @Getter private boolean PlaceholderAPI;
     @Getter private final DatabaseHandler databaseHandler = new DatabaseHandler();
     @Getter private final FoliaHandler foliaHandler = new FoliaHandler();
+    @Getter private final PlayerDataManager playerDataManager = new PlayerDataManager();
 
     @Override
     public void onEnable() {
@@ -33,7 +36,7 @@ public final class BetterHome extends JavaPlugin {
 
     private void loadAll() {
         foliaHandler.load();
-        //playerDataManager.clear();
+        playerDataManager.clear();
         files.loadAll();
         settings.load();
         //cooldowns.load();
