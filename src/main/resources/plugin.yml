@@ -1,3 +1,9 @@
 name: BetterHome
 version: '${project.version}'
-main: com.ronancraft.BetterHome
+main: com.ronancraft.BetterHome.BetterHome
+
+commands:
+  betterhome: {}
+  sethome: {}
+  delhome: {}
+  home: {}

@@ -3,10 +3,11 @@ package com.ronancraft.BetterHome.player.commands;
 import com.ronancraft.BetterHome.player.permission.PermissionCheck;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public interface RTPCommand {
+public interface HomeCommand {
 
     void execute(CommandSender sendi, String label, String[] args);
 
@@ -14,13 +15,9 @@ public interface RTPCommand {
 
     @NotNull PermissionCheck permission();
 
-    String getName();
+    @NotNull String getName();
 
-    default boolean isDebugOnly() {
-        return false;
-    }
-
-    default boolean enabled() {
-        return true;
+    default @Nullable List<String> getAlias() {
+        return null;
     };
 }

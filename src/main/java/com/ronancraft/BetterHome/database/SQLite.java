@@ -1,8 +1,8 @@
 package com.ronancraft.BetterHome.database;
 
+import com.ronancraft.BetterHome.BetterHome;
+import com.ronancraft.BetterHome.async.AsyncHandler;
 import lombok.NonNull;
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
-import me.SuperRonanCraft.BetterRTP.versions.AsyncHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,13 +33,13 @@ public abstract class SQLite {
     }
 
     private Connection getLocal() {
-        File dataFolder = new File(BetterRTP.getInstance().getDataFolder().getPath() + File.separator + "data", db_file_name + ".db");
+        File dataFolder = new File(BetterHome.getInstance().getDataFolder().getPath() + File.separator + "data", db_file_name + ".db");
         if (!dataFolder.exists()){
             try {
                 dataFolder.getParentFile().mkdir();
                 dataFolder.createNewFile();
             } catch (IOException e) {
-                BetterRTP.getInstance().getLogger().log(Level.SEVERE, "File write error: " + dataFolder.getPath());
+                BetterHome.getInstance().getLogger().log(Level.SEVERE, "File write error: " + dataFolder.getPath());
                 e.printStackTrace();
             }
         }
@@ -47,9 +47,9 @@ public abstract class SQLite {
             Class.forName("org.sqlite.JDBC");
             return DriverManager.getConnection("jdbc:sqlite:" + dataFolder);
         } catch (SQLException ex) {
-            BetterRTP.getInstance().getLogger().log(Level.SEVERE, "SQLite exception on initialize", ex);
+            BetterHome.getInstance().getLogger().log(Level.SEVERE, "SQLite exception on initialize", ex);
         } catch (ClassNotFoundException ex) {
-            BetterRTP.getInstance().getLogger().log(Level.SEVERE, "You need the SQLite JBDC library. Google it Ronan...");
+            BetterHome.getInstance().getLogger().log(Level.SEVERE, "You need the SQLite JBDC library. Google it Ronan...");
         }
         return null;
     }
@@ -81,7 +81,7 @@ public abstract class SQLite {
                             //e.printStackTrace();
                         }
                     }
-                    BetterRTP.debug("Database " + type.name() + ":" + table + " configured and loaded!");
+                    BetterHome.debug("Database " + type.name() + ":" + table + " configured and loaded!");
                 }
                 s.close();
             } catch (SQLException e) {
@@ -118,9 +118,9 @@ public abstract class SQLite {
 
     private Enum<?>[] getColumns(DATABASE_TYPE type) {
         switch (type) {
-            case CHUNK_DATA: return DatabaseChunkData.COLUMNS.values();
+            //case CHUNK_DATA: return DatabaseChunkData.COLUMNS.values();
             case PLAYERS: return DatabasePlayers.COLUMNS.values();
-            case QUEUE: return DatabaseQueue.COLUMNS.values();
+            //case QUEUE: return DatabaseQueue.COLUMNS.values();
             case COOLDOWN:
             default: return DatabaseCooldowns.COLUMNS.values();
         }
@@ -128,9 +128,9 @@ public abstract class SQLite {
 
     private String getColumnName(DATABASE_TYPE type, Enum<?> column) {
         switch (type) {
-            case CHUNK_DATA: return ((DatabaseChunkData.COLUMNS) column).name;
+            //case CHUNK_DATA: return ((DatabaseChunkData.COLUMNS) column).name;
             case PLAYERS: return ((DatabasePlayers.COLUMNS) column).name;
-            case QUEUE: return ((DatabaseQueue.COLUMNS) column).name;
+            //case QUEUE: return ((DatabaseQueue.COLUMNS) column).name;
             case COOLDOWN:
             default: return ((DatabaseCooldowns.COLUMNS) column).name;
         }
@@ -138,9 +138,9 @@ public abstract class SQLite {
 
     private String getColumnType(DATABASE_TYPE type, Enum<?> column) {
         switch (type) {
-            case CHUNK_DATA: return ((DatabaseChunkData.COLUMNS) column).type;
+            //case CHUNK_DATA: return ((DatabaseChunkData.COLUMNS) column).type;
             case PLAYERS: return ((DatabasePlayers.COLUMNS) column).type;
-            case QUEUE: return ((DatabaseQueue.COLUMNS) column).type;
+            //case QUEUE: return ((DatabaseQueue.COLUMNS) column).type;
             case COOLDOWN:
             default: return ((DatabaseCooldowns.COLUMNS) column).type;
         }
@@ -162,7 +162,7 @@ public abstract class SQLite {
             }
             ps.executeUpdate();
         } catch (SQLException ex) {
-            BetterRTP.getInstance().getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
+            BetterHome.getInstance().getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
             success = false;
         } finally {
             close(ps, null, conn);
@@ -196,7 +196,7 @@ public abstract class SQLite {
             ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
-            BetterRTP.getInstance().getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
+            BetterHome.getInstance().getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
             success = false;
             ex.printStackTrace();
         } finally {
@@ -215,7 +215,7 @@ public abstract class SQLite {
 
             rs = ps.executeQuery();
         } catch (SQLException ex) {
-            BetterRTP.getInstance().getLogger().log(Level.SEVERE, "Unable to retrieve connection", ex);
+            BetterHome.getInstance().getLogger().log(Level.SEVERE, "Unable to retrieve connection", ex);
         } finally {
             close(ps, rs, conn);
         }
@@ -227,7 +227,7 @@ public abstract class SQLite {
             if (conn != null) conn.close();
             if (rs != null) rs.close();
         } catch (SQLException ex) {
-            java.lang.Error.close(BetterRTP.getInstance(), ex);
+            //java.lang.Error.close(BetterHome.getInstance(), ex);
         }
     }
 
@@ -238,7 +238,5 @@ public abstract class SQLite {
     public enum DATABASE_TYPE {
         PLAYERS,
         COOLDOWN,
-        QUEUE,
-        CHUNK_DATA,
     }
 }

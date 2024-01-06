@@ -1,6 +1,6 @@
 package com.ronancraft.BetterHome.depends;
 
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
+import com.ronancraft.BetterHome.BetterHome;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -17,8 +17,8 @@ public class DepPerms {
 
     public void register() {
         try {
-            if (BetterRTP.getInstance().getServer().getPluginManager().isPluginEnabled("Vault")) {
-                RegisteredServiceProvider<Permission> permissionProvider = BetterRTP.getInstance().getServer()
+            if (BetterHome.getInstance().getServer().getPluginManager().isPluginEnabled("Vault")) {
+                RegisteredServiceProvider<Permission> permissionProvider = BetterHome.getInstance().getServer()
                         .getServicesManager().getRegistration(Permission.class);
                 p = permissionProvider.getProvider();
             } else

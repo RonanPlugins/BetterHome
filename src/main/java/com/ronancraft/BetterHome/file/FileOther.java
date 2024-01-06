@@ -1,6 +1,6 @@
 package com.ronancraft.BetterHome.file;
 
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
+import com.ronancraft.BetterHome.BetterHome;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
@@ -22,11 +22,6 @@ public class FileOther {
 
     public enum FILETYPE implements FileData {
         CONFIG("config"),
-        ECO("economy"),
-        SIGNS("signs"),
-        EFFECTS("effects"),
-        LOCATIONS("locations"),
-        PLACEHOLDERS("placeholders")
         ;
 
         private final String fileName;
@@ -40,7 +35,7 @@ public class FileOther {
 
         @Override
         public Plugin plugin() {
-            return BetterRTP.getInstance();
+            return BetterHome.getInstance();
         }
 
         //PUBLIC

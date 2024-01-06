@@ -1,6 +1,6 @@
 package com.ronancraft.BetterHome.depends.regionPlugins;
 
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
+import com.ronancraft.BetterHome.BetterHome;
 import me.angeschossen.lands.api.LandsIntegration;
 import org.bukkit.Location;
 
@@ -14,7 +14,7 @@ public class RTP_Lands implements RegionPluginCheck {
         boolean result = true;
         if (REGIONPLUGINS.LANDS.isEnabled())
             try {
-                result = LandsIntegration.of(BetterRTP.getInstance()).getArea(loc) == null;
+                result = LandsIntegration.of(BetterHome.getInstance()).getArea(loc) == null;
             } catch (Exception e) {
                 e.printStackTrace();
             }

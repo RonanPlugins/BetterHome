@@ -1,17 +1,11 @@
-package com.ronancraft.BetterHome.player.commands.types;
+package com.ronancraft.BetterHome.player.commands.betterhome;
 
-import com.ronancraft.BetterHome.BetterHome;
-import com.ronancraft.BetterHome.player.permission.PermissionNode;
-import com.ronancraft.BetterHome.player.commands.RTPCommand;
-import com.ronancraft.BetterHome.player.commands.RTPCommandHelpable;
 import com.ronancraft.BetterHome.messages.Message_RTP;
 import com.ronancraft.BetterHome.messages.MessagesHelp;
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
-import me.SuperRonanCraft.BetterRTP.player.commands.RTPCommand;
-import me.SuperRonanCraft.BetterRTP.player.commands.RTPCommandHelpable;
-import me.SuperRonanCraft.BetterRTP.references.PermissionNode;
-import me.SuperRonanCraft.BetterRTP.references.messages.Message_RTP;
-import me.SuperRonanCraft.BetterRTP.references.messages.MessagesHelp;
+import com.ronancraft.BetterHome.player.commands.Commands;
+import com.ronancraft.BetterHome.player.commands.HomeCommand;
+import com.ronancraft.BetterHome.player.commands.HomeCommandHelpable;
+import com.ronancraft.BetterHome.player.permission.PermissionNode;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CmdHelp implements RTPCommand, RTPCommandHelpable {
+public class CmdBH_Help implements HomeCommand, HomeCommandHelpable {
 
-    public String getName() {
+    @NotNull public String getName() {
         return "help";
     }
 
@@ -29,10 +23,10 @@ public class CmdHelp implements RTPCommand, RTPCommandHelpable {
         List<String> list = new ArrayList<>();
         list.add(MessagesHelp.PREFIX.get());
         list.add(MessagesHelp.MAIN.get());
-        for (RTPCommand cmd : BetterHome.getInstance().getCmd().commands)
+        for (HomeCommand cmd : BH_SubCommands.values())
             if (cmd.permission().check(sendi))
-                if (cmd instanceof RTPCommandHelpable) {
-                    String help = ((RTPCommandHelpable) cmd).getHelp();
+                if (cmd instanceof HomeCommandHelpable) {
+                    String help = ((HomeCommandHelpable) cmd).getHelp();
                     list.add(help);
                 }
         Message_RTP.sms(sendi, list, Collections.singletonList(label));

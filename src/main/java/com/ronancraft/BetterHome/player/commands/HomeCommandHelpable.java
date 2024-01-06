@@ -1,6 +1,6 @@
 package com.ronancraft.BetterHome.player.commands;
 
-public interface RTPCommandHelpable {
+public interface HomeCommandHelpable {
 
     String getHelp();
 }

@@ -1,9 +1,9 @@
-package com.ronancraft.BetterHome.player.commands.types;
+package com.ronancraft.BetterHome.player.commands.betterhome;
 
 import com.ronancraft.BetterHome.BetterHome;
 import com.ronancraft.BetterHome.player.permission.PermissionNode;
-import com.ronancraft.BetterHome.player.commands.RTPCommand;
-import com.ronancraft.BetterHome.player.commands.RTPCommandHelpable;
+import com.ronancraft.BetterHome.player.commands.HomeCommand;
+import com.ronancraft.BetterHome.player.commands.HomeCommandHelpable;
 import com.ronancraft.BetterHome.messages.Message_RTP;
 import com.ronancraft.BetterHome.messages.MessagesHelp;
 import org.bukkit.command.CommandSender;
@@ -11,9 +11,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class CmdVersion implements RTPCommand, RTPCommandHelpable {
+public class CmdBH_Version implements HomeCommand, HomeCommandHelpable {
 
-    public String getName() {
+    @NotNull public String getName() {
         return "version";
     }
 

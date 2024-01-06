@@ -1,6 +1,6 @@
 package com.ronancraft.BetterHome.file;
 
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
+import com.ronancraft.BetterHome.BetterHome;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
@@ -29,7 +29,7 @@ public class FileLanguage implements FileData {
 
     @Override
     public Plugin plugin() {
-        return BetterRTP.getInstance();
+        return BetterHome.getInstance();
     }
 
     @Override
@@ -59,25 +59,6 @@ public class FileLanguage implements FileData {
 
     private final String[] defaultLangs = {
             "en.yml", // English - KEEP AS FIRST IN THE LIST
-            "br.yml", //Portuguese
-            "chs.yml", //Chinese Simplified (OasisAkari)
-            "cht.yml", //Chinese (OasisAkari & kamiya10)
-            "cs.yml", //Czech (Lewisparkle)
-            "da.yml", //Danish (Janbchr)
-            "de.yml", //German (IBimsDaNico#8690)
-            "es.yml", //Spanish (emgv)
-            "fr.yml", //French (At0micA55 & Mrflo67)
-            "he.yml", //Hebrew (thefourcraft)
-            "hu.yml", //Hungarian (Has-X)
-            "it.yml", //Italian (iVillager)
-            "ja.yml", //Japanese (ViaSnake)
-            "nl.yml", //Dutch (QuestalNetwork) (GeleVla)
-            "no.yml", //Norwegian (Fraithor & Janbchr)
-            "pl.yml", //Polish (Farum & TeksuSiK)
-            "ro.yml", //Romanian (GamingXBlood)
-            "ru.yml", //Russian (Logan)
-            "tr.yml", //Turkish (Erissos)
-            "vi.yml", //Vietnamese (VoChiDanh#0862)
     };
 
     private void generateDefaults() {

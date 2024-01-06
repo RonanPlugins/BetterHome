@@ -1,10 +1,7 @@
 package com.ronancraft.BetterHome.player.events;
 
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
-import me.SuperRonanCraft.BetterRTP.references.invs.RTPInventories;
-import me.SuperRonanCraft.BetterRTP.references.player.HelperPlayer;
-import me.SuperRonanCraft.BetterRTP.references.player.playerdata.PlayerData;
-import org.bukkit.Material;
+import com.ronancraft.BetterHome.helpers.HelperPlayer;
+import com.ronancraft.BetterHome.player.PlayerData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
@@ -21,8 +18,8 @@ public class Click {
         try {
             Player p = (Player) e.getWhoClicked();
             PlayerData data = HelperPlayer.getData(p);
-            RTPInventories menu = BetterRTP.getInstance().getInvs();
-            menu.getInv(data.getMenu().getInvType()).clickEvent(e);
+            //RTPInventories menu = BetterHome.getInstance().getInvs();
+            //menu.getInv(data.getMenu().getInvType()).clickEvent(e);
         } catch (NullPointerException ex) {
             //ex.printStackTrace();
         }
@@ -30,7 +27,7 @@ public class Click {
 
     static private boolean validClick(InventoryClickEvent e) {
         //Not a player, or Not our inventory
-        if (!(e.getWhoClicked() instanceof Player) || e.isCancelled())
+        /*if (!(e.getWhoClicked() instanceof Player) || e.isCancelled())
             return false;
             // Item is clicked
         else if (e.getCurrentItem() == null || e.getCurrentItem().getType().equals(Material.AIR))
@@ -45,7 +42,7 @@ public class Click {
                 e.setCancelled(true);
                 return false;
             }
-        }
+        }*/
         return true;
     }
 }

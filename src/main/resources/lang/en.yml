@@ -1,0 +1,10 @@
+
+Messages:
+  Prefix: '&7[&6BetterHome&7]&f '
+  SetHome:
+    Success: '&aSuccessfully set home!'
+  Home:
+    Success: '&aSuccessfully teleported home!'
+  Reload: '&ehas been Reloaded!'
+  NoPermission: '&cNo permission to execute this command!'
+  Invalid: '&cInvalid command!'

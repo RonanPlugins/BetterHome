@@ -3,8 +3,6 @@ package com.ronancraft.BetterHome.database;
 import com.ronancraft.BetterHome.BetterHome;
 import com.ronancraft.BetterHome.async.AsyncHandler;
 import lombok.Getter;
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
-import me.SuperRonanCraft.BetterRTP.versions.AsyncHandler;
 
 public class DatabaseHandler {
 

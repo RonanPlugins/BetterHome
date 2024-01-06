@@ -7,32 +7,15 @@ import java.util.List;
 
 public enum MessagesCore {
 
-    SUCCESS_PAID("Success.Paid"),
-    SUCCESS_BYPASS("Success.Bypass"),
-    SUCCESS_LOADING("Success.Loading"),
-    SUCCESS_TELEPORT("Success.Teleport"),
-    FAILED_NOTSAFE("Failed.NotSafe"),
-    FAILED_PRICE("Failed.Price"),
-    FAILED_HUNGER("Failed.Hunger"),
-    OTHER_NOTSAFE("Other.NotSafe"),
-    OTHER_SUCCESS("Other.Success"),
-    OTHER_BIOME("Other.Biome"),
-    NOTEXIST("NotExist"),
+    //SetHome
+    SETHOME_SUCCESS("SetHome.Success"),
+    //Home
+    HOME_SUCCESS("Home.Success"),
+
+    //BetterHome
     RELOAD("Reload"),
-    NOPERMISSION("NoPermission.Basic"),
-    NOPERMISSION_WORLD("NoPermission.World"),
-    DISABLED_WORLD("DisabledWorld"),
-    COOLDOWN("Cooldown"),
+    NOPERMISSION("NoPermission"),
     INVALID("Invalid"),
-    NOTONLINE("NotOnline"),
-    DELAY("Delay"),
-    SIGN("Sign"),
-    MOVED("Moved"),
-    ALREADY("Already"),
-    //EDIT
-    EDIT_ERROR("Edit.Error"),
-    EDIT_SET("Edit.Set"),
-    EDIT_REMOVE("Edit.Remove"),
     ;
 
     final String section;

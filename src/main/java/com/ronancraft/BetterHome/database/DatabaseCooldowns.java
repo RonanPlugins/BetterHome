@@ -1,18 +1,7 @@
 package com.ronancraft.BetterHome.database;
 
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
-import me.SuperRonanCraft.BetterRTP.references.rtpinfo.CooldownData;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import java.util.logging.Level;
 
 public class DatabaseCooldowns extends SQLite {
 
@@ -25,22 +14,22 @@ public class DatabaseCooldowns extends SQLite {
         List<String> list = new ArrayList<>();
 
         // Ignore loaded world names if cooldowns are disabled
-        if (!BetterRTP.getInstance().getCooldowns().isEnabled())
-            return list;
+        //if (!BetterHome.getInstance().getCooldowns().isEnabled())
+        //    return list;
 
         // Get list of disabled worlds and ensure list isn't null
-        List<String> disabledWorlds = BetterRTP.getInstance().getRTP().getDisabledWorlds();
-        if (disabledWorlds == null) disabledWorlds = new ArrayList<>();
+        //List<String> disabledWorlds = BetterHome.getInstance().getRTP().getDisabledWorlds();
+        //if (disabledWorlds == null) disabledWorlds = new ArrayList<>();
 
         // If there are disabled worlds, iterate through the loaded worlds on the server and
         // add the world name to the list of table names if they aren't marked as disabled
-        List<World> worlds = Bukkit.getWorlds();
-        if (!disabledWorlds.isEmpty()) {
+        //List<World> worlds = Bukkit.getWorlds();
+        /*if (!disabledWorlds.isEmpty()) {
             for (World world : worlds) {
                 if (!disabledWorlds.contains(world.getName()))
                     list.add(world.getName());
             }
-        }
+        }*/
 
         return list;
     }
@@ -61,7 +50,7 @@ public class DatabaseCooldowns extends SQLite {
         }
     }
 
-    public void removePlayer(UUID uuid, World world) {
+    /*public void removePlayer(UUID uuid, World world) {
         // Create SQL query string with backtick-ed table name to allow for special characters
         String sql = String.format(
                 "DELETE FROM `%s` WHERE %s = ?",

@@ -1,8 +1,8 @@
 package com.ronancraft.BetterHome.async;
 
+import com.ronancraft.BetterHome.BetterHome;
 import com.tcoded.folialib.impl.ServerImplementation;
 import com.tcoded.folialib.wrapper.WrappedTask;
-import me.SuperRonanCraft.BetterRTP.BetterRTP;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,6 +28,6 @@ public class AsyncHandler {
     }
 
     private static ServerImplementation getFolia() {
-        return BetterRTP.getInstance().getFoliaHandler().get();
+        return BetterHome.getInstance().getFoliaHandler().get();
     }
 }
