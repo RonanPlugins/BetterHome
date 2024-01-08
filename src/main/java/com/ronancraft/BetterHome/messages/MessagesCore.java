@@ -11,6 +11,7 @@ public enum MessagesCore {
     SETHOME_SUCCESS("SetHome.Success"),
     //Home
     HOME_SUCCESS("Home.Success"),
+    HOME_NONE("Home.None"),
 
     //BetterHome
     RELOAD("Reload"),

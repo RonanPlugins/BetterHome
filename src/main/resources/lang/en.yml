@@ -4,7 +4,8 @@ Messages:
   SetHome:
     Success: '&aSuccessfully set home!'
   Home:
-    Success: '&aSuccessfully teleported home!'
+    Success: '&aTeleported to Home!'
+    None: '&cNo home set!'
   Reload: '&ehas been Reloaded!'
   NoPermission: '&cNo permission to execute this command!'
   Invalid: '&cInvalid command!'

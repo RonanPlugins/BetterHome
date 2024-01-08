@@ -1,6 +1,7 @@
 package com.ronancraft.BetterHome.player.commands.other;
 
 import com.ronancraft.BetterHome.helpers.HelperPlayer;
+import com.ronancraft.BetterHome.messages.Message;
 import com.ronancraft.BetterHome.messages.Message_RTP;
 import com.ronancraft.BetterHome.messages.MessagesCore;
 import com.ronancraft.BetterHome.messages.MessagesHelp;
@@ -23,12 +24,14 @@ public class CommandHandler_Home implements CommandHandler {
     public void commandExecuted(CommandSender sendi, String label, String[] args) {
         Player player = (Player) sendi;
         PlayerData data = HelperPlayer.getData(player);
-        Location loc = data.getDefaultHome().clone().setDirection(player.getLocation().getDirection());
-        loc.setPitch(player.getLocation().getPitch());
-        player.teleport(loc);
-        List<String> list = new ArrayList<>();
-        list.add(MessagesCore.HOME_SUCCESS.get(sendi, null));
-        Message_RTP.sms(sendi, list, Collections.singletonList(label));
+        if (data.getDefaultHome() != null) {
+            Location loc = data.getDefaultHome().clone().setDirection(player.getLocation().getDirection());
+            loc.setPitch(player.getLocation().getPitch());
+            player.teleport(loc);
+            Message_RTP.sms(sendi, MessagesCore.HOME_SUCCESS.get(sendi, "Home"));
+        } else {
+            Message_RTP.sms(sendi, MessagesCore.HOME_NONE.get(sendi, null));
+        }
     }
 
     @Override public List<String> onTabComplete(CommandSender sendi, String[] args) {
