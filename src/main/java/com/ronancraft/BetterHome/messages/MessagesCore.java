@@ -9,6 +9,7 @@ public enum MessagesCore {
 
     //SetHome
     SETHOME_SUCCESS("SetHome.Success"),
+    SETHOME_SUCCESS_CUSTOM("SetHome.Custom"),
     //Home
     HOME_SUCCESS("Home.Success"),
     HOME_NONE("Home.None"),

@@ -29,7 +29,7 @@ public class DatabasePlayers extends SQLite {
     public enum COLUMNS {
         UUID("uuid", "varchar(32) PRIMARY KEY"),
         //COOLDOWN DATA
-        PRIMARY_HOME("home", "TEXT"),
+        //PRIMARY_HOME("home", "TEXT"),
         LAST_HOME_DATE("last_home_date", "DATETIME"),
         OTHER_HOMES("other_homes", "TEXT"),
         ;
@@ -54,9 +54,9 @@ public class DatabasePlayers extends SQLite {
 
             rs = ps.executeQuery();
             if (rs.next()) {
-                Location home = HelperDatabase.getLocationFromJson(rs.getString(COLUMNS.PRIMARY_HOME.name));
-                data.setLastHomeDate(rs.getDate(COLUMNS.LAST_HOME_DATE.name));
-                data.setDefaultHome(home);
+                //Location home = HelperDatabase.getLocationFromJson(rs.getString(COLUMNS.PRIMARY_HOME.name));
+                data.setLastHomeTPTime(rs.getDate(COLUMNS.LAST_HOME_DATE.name));
+                //data.setDefaultHome(home);
             }
         } catch (SQLException ex) {
             BetterHome.getInstance().getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
@@ -70,14 +70,14 @@ public class DatabasePlayers extends SQLite {
         String pre = "INSERT OR REPLACE INTO ";
         String sql = pre + tables.get(0) + " ("
                 + COLUMNS.UUID.name + ", "
-                + COLUMNS.PRIMARY_HOME.name + ", "
+                //+ COLUMNS.PRIMARY_HOME.name + ", "
                 + COLUMNS.LAST_HOME_DATE.name + " "
                 //+ COLUMNS.USES.name + " "
-                + ") VALUES(?, ?, ?)";
+                + ") VALUES(?, ?)";
         List<Object> params = new ArrayList<Object>() {{
                 add(data.player.getUniqueId().toString());
-                add(data.getDefaultHome());
-                add(data.getLastHomeDate());
+                //add(data.getDefaultHome());
+                add(data.getLastHomeTPTime());
                 //add(data.getUses());
         }};
         sqlUpdate(sql, params);

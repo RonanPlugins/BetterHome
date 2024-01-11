@@ -30,8 +30,8 @@ public class DepPlaceholderAPI extends PlaceholderExpansion {
     @Override
     public String onPlaceholderRequest(Player player, String request) {
         PlayerData data = HelperPlayer.getData(player);
-        if (request.equalsIgnoreCase("home")) {
-            return String.valueOf(data.getDefaultHome());
+        if (request.equalsIgnoreCase("home") && data.getHomes().containsKey(null)) {
+            return String.valueOf(data.getHomes().get(null));
         }
         return null;
     }

@@ -2,7 +2,8 @@
 Messages:
   Prefix: '&7[&6BetterHome&7]&f '
   SetHome:
-    Success: '&aSuccessfully set home!'
+    Success: '&aDefault home set!'
+    Custom: '&aNew Home &e{0} &aset!'
   Home:
     Success: '&aTeleported to Home!'
     None: '&cNo home set!'

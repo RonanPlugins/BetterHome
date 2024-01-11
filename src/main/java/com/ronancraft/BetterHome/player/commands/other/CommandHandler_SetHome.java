@@ -21,8 +21,14 @@ public class CommandHandler_SetHome implements CommandHandler {
     public void commandExecuted(CommandSender sendi, String label, String[] args) {
         Player player = (Player) sendi;
         PlayerData data = HelperPlayer.getData(player);
-        data.setDefaultHome(player.getLocation());
-        Message_RTP.sms(sendi, MessagesCore.SETHOME_SUCCESS.get(sendi, player.getLocation()));
+        if (args.length > 0 && data.getHomes().containsKey(null)) {
+            String homeName = args[0];
+            data.getHomes().put(homeName, player.getLocation());
+            Message_RTP.sms(sendi, MessagesCore.SETHOME_SUCCESS_CUSTOM.get(sendi, player.getLocation()).replace("{0}", homeName));
+        } else {
+            data.getHomes().put(null, player.getLocation());
+            Message_RTP.sms(sendi, MessagesCore.SETHOME_SUCCESS.get(sendi, player.getLocation()));
+        }
     }
 
     @Override public List<String> onTabComplete(CommandSender sendi, String[] args) {
