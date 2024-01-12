@@ -17,8 +17,11 @@ public class Commands {
     public List<String> onTabComplete(CommandSender sendi, String label, String[] args) {
         List<String> list = new ArrayList<>();
         for (CommandRoute route : CommandRoute.values()) {
-            if (label.equalsIgnoreCase(route.getRouteName()))
-                list.addAll(route.getHandler().onTabComplete(sendi, args));
+            if (label.equalsIgnoreCase(route.getRouteName())) {
+                List<String> list2 = route.getHandler().onTabComplete(sendi, args);
+                if (list2 != null)
+                    list.addAll(list2);
+            }
         }
         return list;
     }

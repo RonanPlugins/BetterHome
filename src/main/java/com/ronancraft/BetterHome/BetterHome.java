@@ -1,5 +1,7 @@
 package com.ronancraft.BetterHome;
 
+import com.ronancraft.BetterHome.async.AsyncHandler;
+import com.ronancraft.BetterHome.helpers.HelperPlayer;
 import com.ronancraft.BetterHome.messages.Message_RTP;
 import com.ronancraft.BetterHome.player.PlayerDataManager;
 import com.ronancraft.BetterHome.player.commands.Commands;
@@ -13,6 +15,7 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
@@ -52,6 +55,16 @@ public final class BetterHome extends JavaPlugin {
         //listener.load();
         //eco.load();
         perms.register();
+        AsyncHandler.asyncLater(() -> {
+            ////Wait till arenas have loaded
+            //if (!systems.getArenaHandler().isLoaded())
+            //    return;
+            //playerLastOnline = HelperDatabase.getDatabasePlayer().getAllLastOnline();
+            for (Player p : Bukkit.getOnlinePlayers())
+                HelperPlayer.getData(p).load(true, false);
+            //Cancel repeating task
+            //this.cancel();
+        }, 5);
     }
 
     private void registerDependencies() {

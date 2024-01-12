@@ -1,7 +1,9 @@
 package com.ronancraft.BetterHome.player.events;
 
 import com.ronancraft.BetterHome.BetterHome;
+import com.ronancraft.BetterHome.async.AsyncHandler;
 import com.ronancraft.BetterHome.file.FileOther;
+import com.ronancraft.BetterHome.helpers.HelperPlayer;
 import com.ronancraft.BetterHome.messages.Message_RTP;
 import com.ronancraft.BetterHome.player.permission.PermissionNode;
 import com.ronancraft.BetterHome.web.Updater;
@@ -13,10 +15,7 @@ public class Join {
     static void event(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         updater(p);
-        /*AsyncHandler.async(() -> {
-                //getPl().getCooldowns().loadPlayer(p);
-            });
-        //rtpOnFirstJoin(p);*/
+        HelperPlayer.getData(p).load(false, true);
     }
 
     //Updater

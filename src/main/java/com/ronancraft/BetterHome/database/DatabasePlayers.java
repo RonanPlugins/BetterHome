@@ -4,6 +4,7 @@ import com.ronancraft.BetterHome.BetterHome;
 import com.ronancraft.BetterHome.helpers.HelperDatabase;
 import com.ronancraft.BetterHome.player.PlayerData;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +30,7 @@ public class DatabasePlayers extends SQLite {
     public enum COLUMNS {
         UUID("uuid", "varchar(32) PRIMARY KEY"),
         //COOLDOWN DATA
-        //PRIMARY_HOME("home", "TEXT"),
+        HOMES("homes", "TEXT"),
         LAST_HOME_DATE("last_home_date", "DATETIME"),
         OTHER_HOMES("other_homes", "TEXT"),
         ;
@@ -50,11 +51,11 @@ public class DatabasePlayers extends SQLite {
         try {
             conn = getSQLConnection();
             ps = conn.prepareStatement("SELECT * FROM " + tables.get(0) + " WHERE " + COLUMNS.UUID.name + " = ?");
-            ps.setString(1, data.player.getUniqueId().toString());
+            ps.setString(1, data.getPlayer().getUniqueId().toString());
 
             rs = ps.executeQuery();
             if (rs.next()) {
-                //Location home = HelperDatabase.getLocationFromJson(rs.getString(COLUMNS.PRIMARY_HOME.name));
+                data.setHomes(HelperDatabase.getHomesFromJson(rs.getString(COLUMNS.HOMES.name)));
                 data.setLastHomeTPTime(rs.getDate(COLUMNS.LAST_HOME_DATE.name));
                 //data.setDefaultHome(home);
             }
@@ -70,15 +71,24 @@ public class DatabasePlayers extends SQLite {
         String pre = "INSERT OR REPLACE INTO ";
         String sql = pre + tables.get(0) + " ("
                 + COLUMNS.UUID.name + ", "
-                //+ COLUMNS.PRIMARY_HOME.name + ", "
+                + COLUMNS.HOMES.name + ", "
                 + COLUMNS.LAST_HOME_DATE.name + " "
                 //+ COLUMNS.USES.name + " "
-                + ") VALUES(?, ?)";
+                + ") VALUES(?, ?, ?)";
         List<Object> params = new ArrayList<Object>() {{
-                add(data.player.getUniqueId().toString());
-                //add(data.getDefaultHome());
+                add(data.getPlayer().getUniqueId().toString());
+                add(HelperDatabase.getJsonFromHomes(data.getHomes()));
                 add(data.getLastHomeTPTime());
                 //add(data.getUses());
+        }};
+        sqlUpdate(sql, params);
+    }
+
+    public void deletePlayer(Player player) {
+        String sql = "DELETE FROM " + tables.get(0) + " WHERE "
+                + COLUMNS.UUID.name + " = ?";
+        List<Object> params = new ArrayList<Object>() {{
+            add(player.getUniqueId().toString());
         }};
         sqlUpdate(sql, params);
     }

@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
 
@@ -38,33 +39,39 @@ public class HelperDatabase {
     }
 
     //Location
-    public static String getJsonFromLocation(Location loc) {
-        if (loc == null)
-            return null;
+    public static String getJsonFromHomes(@NotNull HashMap<String, Location> homes) {
         List<Map> array = new ArrayList<>();
-        HashMap<String, Object> obj = new HashMap();
-        obj.put("x", loc.getBlockX());
-        obj.put("y", loc.getBlockY());
-        obj.put("z", loc.getBlockZ());
-        obj.put("world", loc.getWorld().getName());
-        array.add(obj);
+        for (Map.Entry<String, Location> home : homes.entrySet()) {
+            HashMap<String, Object> obj = new HashMap();
+            obj.put("name", home.getKey());
+            obj.put("x", home.getValue().getBlockX());
+            obj.put("y", home.getValue().getBlockY());
+            obj.put("z", home.getValue().getBlockZ());
+            obj.put("world", home.getValue().getWorld().getName());
+            array.add(obj);
+        }
         return JSONArray.toJSONString(array);
     }
 
-    public static Location getLocationFromJson(String json) {
+    public static HashMap<String, Location> getHomesFromJson(String json) {
         if (json == null || json.isEmpty())
             return null;
         try {
             JSONArray obj = (JSONArray) JSONValue.parse(json);
-            List<Location> locations = new ArrayList<>();
+            HashMap<String, Location> homes = new HashMap<>();
             //HelperLogger.info("REQUESTS FROM JSON = " + json);
-            Map info = (Map) obj.get(0);
-            int x = ((Long) info.get("x")).intValue();
-            int y = ((Long) info.get("y")).intValue();
-            int z = ((Long) info.get("z")).intValue();
-            String worldName = (String) info.get("world");
-            World world = Bukkit.getWorld(worldName);
-            return new Vector(x, y, z).toLocation(world);
+
+            for (Object map : obj) {
+                Map info = (Map) map;
+                String name = ((String) info.get("name"));
+                int x = ((Long) info.get("x")).intValue();
+                int y = ((Long) info.get("y")).intValue();
+                int z = ((Long) info.get("z")).intValue();
+                String worldName = (String) info.get("world");
+                World world = Bukkit.getWorld(worldName);
+                homes.put(name, new Vector(x, y, z).toLocation(world));
+            }
+            return homes;
         } catch (NullPointerException e) {
             e.printStackTrace();
             return null;

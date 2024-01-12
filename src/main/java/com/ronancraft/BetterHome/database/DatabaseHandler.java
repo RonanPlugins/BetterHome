@@ -4,10 +4,10 @@ import com.ronancraft.BetterHome.BetterHome;
 import com.ronancraft.BetterHome.async.AsyncHandler;
 import lombok.Getter;
 
-public class DatabaseHandler {
+@Getter public class DatabaseHandler {
 
-    @Getter private final DatabasePlayers databasePlayers = new DatabasePlayers();
-    @Getter private final DatabaseCooldowns databaseCooldowns = new DatabaseCooldowns();
+    private final DatabasePlayers databasePlayers = new DatabasePlayers();
+    private final DatabaseCooldowns databaseCooldowns = new DatabaseCooldowns();
 
     public void load() {
         AsyncHandler.async(() -> {

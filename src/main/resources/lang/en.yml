@@ -5,7 +5,8 @@ Messages:
     Success: '&aDefault home set!'
     Custom: '&aNew Home &e{0} &aset!'
   Home:
-    Success: '&aTeleported to Home!'
+    Success: '&aTeleported to home!'
+    Custom: '&aTeleported to home &e{0}&a!'
     None: '&cNo home set!'
   Reload: '&ehas been Reloaded!'
   NoPermission: '&cNo permission to execute this command!'

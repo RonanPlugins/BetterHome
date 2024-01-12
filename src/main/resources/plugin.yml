@@ -1,9 +1,16 @@
 name: BetterHome
 version: '${project.version}'
 main: com.ronancraft.BetterHome.BetterHome
+description: Create quick and easy homes to teleport to
+website: https://ronancraft.net
+author: RonanCraft
 
 commands:
-  betterhome: {}
-  sethome: {}
-  delhome: {}
-  home: {}
+  betterhome:
+    description: Admin commands for BetterHome
+  sethome:
+    description: Set default and/or custom home
+  delhome:
+    description: Delete a custom home
+  home:
+    description: Teleport to a default and/or custom home
